@@ -162,18 +162,25 @@ SET Experiment_Group =
     CASE
         WHEN RAND() < 0.5 THEN 'Group A'
         ELSE 'Group B'
-    END;</pre> | <img width="596" alt="A/B Testing Result" src="https://github.com/user-attachments/assets/b786cf8d-784f-4e3f-8cbe-e05913ab839f" /> |
+    END;</pre> 
+    
+   | <img width="596" height="234" alt="Screenshot 2026-02-15 045513" src="https://github.com/user-attachments/assets/e3e19887-dc51-4d7c-b5cf-32d6e404149e" />
+ |
+
 | Check group size | <pre>SELECT
     Experiment_Group,
     COUNT(*) AS Customers
 FROM customer_metrics
-GROUP BY Experiment_Group;</pre> | <img width="538" alt="Group Size Result" src="https://github.com/user-attachments/assets/d06d4150-c4e4-441c-93cf-6987d468a43e" /> |
+GROUP BY Experiment_Group;</pre> | <img width="729" height="350" alt="Screenshot 2026-02-11 230449" src="https://github.com/user-attachments/assets/83db2975-a562-4076-90bb-237aaf8d18dd" />
+ |
+
 | Compare purchase metrics | <pre>SELECT
     cm.Experiment_Group,
     AVG(cm.Purchase_Frequency) AS Avg_Frequency,
     AVG(cm.Total_Quantity) AS Avg_Quantity
 FROM customer_metrics cm
 GROUP BY cm.Experiment_Group;</pre> | <img width="702" alt="Purchase Metrics Result" src="https://github.com/user-attachments/assets/5120d18e-c0b5-4e1f-8736-fa8b68d034b8" /> |
+
 | Revenue comparison | <pre>SELECT
     cm.Experiment_Group,
     SUM(t.Quantity * p.UnitPrice) AS Revenue
